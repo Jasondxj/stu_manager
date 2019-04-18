@@ -17,12 +17,20 @@ public class StudentController {
     @Autowired
     private IStudentService studentService;
 
-
+    /**
+     * 访问管理页面
+     * @return
+     */
     @RequestMapping("manage")
     public String manage() {
         return "student/manage";
     }
 
+    /**
+     * 查找所有学生
+     * @param model
+     * @return
+     */
     @RequestMapping("info")
     public String info(Model model) {
         List<Student> students = studentService.findAll();
@@ -30,14 +38,51 @@ public class StudentController {
         return "student/info";
     }
 
+    /**
+     * 访问编辑页面
+     * @return
+     */
     @RequestMapping("edit")
     public String edit() {
         return "student/edit";
     }
+
+    /**
+     * 新增学生
+     * @param student
+     * @return
+     */
     @RequestMapping("add")
     public String add(Student student) {
         studentService.add(student);
         return "redirect:info.do";
+    }
+
+    /**
+     * 删除学生
+     * @param sno
+     * @return
+     */
+    @RequestMapping("delete")
+    public String delete(String sno) {
+        studentService.deleteBySno(sno);
+        return "forward:info.do";
+    }
+
+    /**
+     * 根据条件查询学生
+     * @param
+     * @return
+     */
+    @RequestMapping("search")
+    public String search(String name,String sex,String dromno,Integer age,Model model) {
+        System.out.println(name);
+        System.out.println(sex);
+        System.out.println(dromno);
+
+        List<Student> students = studentService.findByCondition(name, sex, dromno,age);
+        model.addAttribute("students",students);
+        return "student/info";
     }
 
 }

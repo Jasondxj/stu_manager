@@ -4,6 +4,7 @@ import com.jason.model.User;
 import com.jason.model.UserExample;
 import com.jason.sevice.IUserService;
 import com.jason.sevice.base.impl.IBaseServiceImpl;
+import com.sun.xml.internal.bind.v2.model.core.ID;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,14 +14,14 @@ import java.util.Map;
 
 @Service
 @Transactional
-public class UserServiceImpl extends IBaseServiceImpl<User> implements IUserService{
+public class UserServiceImpl extends IBaseServiceImpl<User> implements IUserService {
 
 
     @Override
-    public User login(String username,String password) {
-        Map<String,Object> map=new HashMap<String, Object>();
-        map.put("username",username);
-        map.put("password",password);
+    public User login(String username, String password) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("username", username);
+        map.put("password", password);
         User user = userMapper.findBynameAndPassword(map);
         return user;
     }
@@ -33,12 +34,20 @@ public class UserServiceImpl extends IBaseServiceImpl<User> implements IUserServ
 
     @Override
     public List<User> findByCondition(String username, String gender, String email, String name) {
-        UserExample example=new UserExample();
+        UserExample example = new UserExample();
         UserExample.Criteria criteria = example.createCriteria();
-        criteria.andUsernameLike(username);
-        criteria.andEmailLike(email);
-        criteria.andGenderLike(gender);
-        criteria.andNameLike(name);
+        if (username != null && username != "") {
+            criteria.andUsernameLike("%" + username + "%");
+        }
+        if (email != null && email != "") {
+            criteria.andEmailLike("%" + email + "%");
+        }
+        if (gender != null && gender != "") {
+            criteria.andGenderLike("%" + gender + "%");
+        }
+        if (name != null && name != "") {
+            criteria.andNameLike("%" + name + "%");
+        }
         List<User> users = userMapper.selectByExample(example);
         return users;
     }
@@ -49,12 +58,10 @@ public class UserServiceImpl extends IBaseServiceImpl<User> implements IUserServ
     }
 
 
-
     @Override
     public void deleteById(Integer id) {
         userMapper.deleteByPrimaryKey(id);
     }
-
 
 
     @Override
