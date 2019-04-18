@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/common_parent/common_parent.iml" filepath="$PROJECT_DIR$/common_parent/common_parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common_parent/stu_api/stu_api.iml" filepath="$PROJECT_DIR$/common_parent/stu_api/stu_api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common_parent/stu_manager/stu_manager.iml" filepath="$PROJECT_DIR$/common_parent/stu_manager/stu_manager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common_parent/stu_mapper/stu_mapper.iml" filepath="$PROJECT_DIR$/common_parent/stu_mapper/stu_mapper.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common_parent/stu_model/stu_model.iml" filepath="$PROJECT_DIR$/common_parent/stu_model/stu_model.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common_parent/stu_service/stu_service.iml" filepath="$PROJECT_DIR$/common_parent/stu_service/stu_service.iml" />
+    </modules>
+  </component>
+</project>

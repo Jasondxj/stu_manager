@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/common_parent/stu_api" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/common_parent/stu_manager" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/common_parent/stu_manager/src/main/webapp/assets/Styles/common.css" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/common_parent/stu_mapper" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/common_parent/stu_model" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/common_parent/stu_service" charset="UTF-8" />
+  </component>
+</project>

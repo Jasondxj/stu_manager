@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="stu_api" />
+        <module name="stu_manager" />
+        <module name="stu_mapper" />
+        <module name="stu_model" />
+        <module name="stu_service" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="common_parent" target="1.5" />
+      <module name="stu_api" target="1.7" />
+      <module name="stu_manager" target="1.7" />
+      <module name="stu_mapper" target="1.7" />
+      <module name="stu_model" target="1.7" />
+      <module name="stu_service" target="1.7" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
