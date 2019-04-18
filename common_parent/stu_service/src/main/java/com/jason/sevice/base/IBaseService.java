@@ -15,7 +15,7 @@ public interface IBaseService<T> {
      * @param id
      */
     public void deleteById(Integer id);
-    public void update(T t);
+
     public void save(T t);
 
 }

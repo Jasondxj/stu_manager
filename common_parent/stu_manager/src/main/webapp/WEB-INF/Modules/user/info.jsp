@@ -86,7 +86,7 @@
 
                             <td class="delete" style="width: 210px; text-align: center;">
                                 <p><input type="button" onclick="Common.showPage(this);" value="编辑"
-                                          data-url="./UserUpdate.html" />
+                                          data-url="${pageContext.request.contextPath}/user/toUpdate.do" />
                                     <a href="${pageContext.request.contextPath}/user/delete.do?id=${user.id}">删除</a>
                             </td>
                         </tr>

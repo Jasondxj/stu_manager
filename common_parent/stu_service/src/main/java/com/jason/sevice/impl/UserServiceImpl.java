@@ -53,6 +53,11 @@ public class UserServiceImpl extends IBaseServiceImpl<User> implements IUserServ
     }
 
     @Override
+    public void updateById(User user) {
+        userMapper.updateByPrimaryKeySelective(user);
+    }
+
+    @Override
     public User findById(Integer id) {
         return userMapper.selectByPrimaryKey(id);
     }
@@ -63,11 +68,6 @@ public class UserServiceImpl extends IBaseServiceImpl<User> implements IUserServ
         userMapper.deleteByPrimaryKey(id);
     }
 
-
-    @Override
-    public void update(User user) {
-
-    }
 
     @Override
     public void save(User user) {

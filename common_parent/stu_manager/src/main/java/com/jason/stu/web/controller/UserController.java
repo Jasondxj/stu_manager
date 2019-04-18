@@ -133,5 +133,14 @@ public class UserController extends BaseController<User>{
         userService.deleteById(id);
         return "forward:info.do";
     }
+    @RequestMapping("toUpdate")
+    public String toUpdate(){
+        return "user/update";
+    }
+    @RequestMapping("update")
+    public String update(User user){
+        userService.updateById(user);
+        return "forward:info.do";
+    }
 
 }

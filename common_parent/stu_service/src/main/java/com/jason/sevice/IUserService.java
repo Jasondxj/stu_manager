@@ -17,5 +17,7 @@ public interface IUserService extends IBaseService<User>{
 
     public List<User> findByCondition(String username,String gender,String email,String name);
 
+    public void updateById(User user);
+
 
 }
