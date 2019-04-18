@@ -87,7 +87,7 @@
                         <td style="width: 50px"><p>性别</p></td>
                         <td style="width: 30px"><p>年龄</p></td>
                         <td style="width: 60px"><p>班级</p></td>
-                        <td style="width: 30px"><p>院系</p></td>
+                        <td style="width: 100px"><p>院系</p></td>
                         <td style="width: 150px"><p>邮箱</p></td>
                         <td style="width: 100px"><p>QQ</p></td>
                         <td style="width: 100px"><p>手机号码</p></td>
@@ -109,7 +109,7 @@
                             <td style="width: 50px; text-align: center;"><p><span >${student.sex}</span></p></td>
                             <td style="width: 30px; text-align: center;"><p><span >${student.age}</span></p></td>
                             <td style="width: 60px; text-align: center;"><p><span >${student.classno}</span></p></td>
-                            <td style="width: 30px; text-align: center;"><p><span >${student.departmentId}</span></p></td>
+                            <td style="width: 100px; text-align: center;"><p><span >${student.department.name}</span></p></td>
                             <td style="width: 150px; text-align: center;"><p><span >${student.email}</span></p></td>
                             <td style="width: 100px; text-align: center;"><p><span >${student.qq}</span></p></td>
                             <td style="width: 100px; text-align: center;"><p><span >${student.phone}</span></p></td>

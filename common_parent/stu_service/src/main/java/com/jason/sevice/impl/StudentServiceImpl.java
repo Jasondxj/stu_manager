@@ -18,4 +18,9 @@ public class StudentServiceImpl implements IStudentService{
         List<Student> students = studentMapper.findAll();
         return students;
     }
+
+    @Override
+    public void add(Student student) {
+        studentMapper.insertSelective(student);
+    }
 }

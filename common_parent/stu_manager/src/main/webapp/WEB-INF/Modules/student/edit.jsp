@@ -7,7 +7,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/assets/Scripts/common.js"></script>
 	<script type="text/javascript">
 	function userSave(){
-		$("#userForm").attr("action","");
+		$("#userForm").attr("action","${pageContext.request.contextPath}/student/add.do");
 		$("#userForm").submit();
 	}
 	</script>
@@ -33,90 +33,59 @@
 					<div id="MainContent_UpdatePanel1">
 						<table border="0" cellpadding="0" cellspacing="6" style="width: 100%">
 							<tr>
-								<td class="input_text tar">用户名：</td>
+								<td class="input_text tar">学号：</td>
 								<td>
 									<p>
-										<input name="username" type="text" value="" id="username"  style="width: 150px;" /> 
+										<input name="sno" type="text" value="" id="username"  style="width: 150px;" />
 									</p>
 								</td>
-								<td class="input_text tar">密码：</td>
+								<td class="input_text tar">性别：</td>
 								<td>
 									<p>
-										<input name="password" type="text" value="" id="password"  style="width: 150px;" />
+										<input name="sex" type="text" value="" id="password"  style="width: 150px;" />
 									</p>
 								</td>
-								<td class="input_text tar">手机号码：</td>
+								<td class="input_text tar">名字：</td>
 								<td>
 									<p>
-										<input name="tel" type="text" value="" id="tel" style="width: 150px;" />
+										<input name="name" type="text" value="" id="tel" style="width: 150px;" />
 									</p>
 								</td>
 							</tr>
 							<tr>
-								<td class="input_text tar">QQ：</td>
+								<td class="input_text tar">年龄：</td>
 								<td>
 									<p>
-										<input name="qq" type="text" value="" id="qq" style="width: 150px;" /> 
+										<input name="age" type="text" value="" id="qq" style="width: 150px;" />
 									</p>
 								</td>
 								<td class="input_text tar">email：</td>
 								<td>
 									<p>
-										<input name="iemail" type="text" value="" id="iemail" style="width: 150px;" />
+										<input name="email" type="text" value="" id="iemail" style="width: 150px;" />
 									</p>
 								</td>
-								<td class="input_text tar">身份证：</td>
-								<td>
-									<p>
-										<input name="idCard" type="text" value="" id="idCard"  style="width: 150px;" />
-									</p>
-								</td>
-							</tr>
-							<tr>
-								<td class="input_text tar">支付方式：</td>
-								<td>
-									<p>
-									  <select name="payType" id="payType" >
-										<option value="">请选支付方式</option>
-									</select>
-									</p>
-								</td>
-								<td class="input_text tar">支付账号：</td>
-								<td>
-									<p>
-										<input name="payAccount" type="text" value="" id="payAccount" style="width: 150px;" />
-									</p>
-								</td>
-								<td class="input_text tar">姓名：</td>
-								<td>
-									<p>
-										<input name="payAccountName" type="text" value="" id="payAccountName" style="width: 150px;" />
-									</p>
-								</td>
-							</tr>
 
-							<tr><td colspan="6" style="margin-top: 116px;"><h5>添加设备</h5></td></tr>
+							</tr>
 							<tr>
-								<td class="input_text tar">设备类型：</td>
-								<td>
-									<p>
-									  <select name="deviceType" id="deviceType" >
-										<option value="">请选设备类型</option>
-									</select>
-									</p>
-								</td>
-								<td class="input_text tar">设备ID：</td>
-								<td>
-									<p>
-										<input name="deviceId" type="text" value="" id="deviceId" style="width: 150px;" />
-									</p>
-								</td>
-								<td class="input_text tar">设备机型：</td>
-								<td>
-									<p>
-										<input name="deviceDetail" type="text" value="" id="deviceDetail" style="width: 150px;" />
-									</p>
-								</td>
+                                <td class="input_text tar">籍贯：</td>
+                                <td>
+                                    <p>
+                                        <input name="address" type="text" value="" id="address"  style="width: 150px;" />
+                                    </p>
+                                </td>
+                                <td class="input_text tar">手机号码：</td>
+                                <td>
+                                    <p>
+                                        <input name="phone" type="text" value="" id="phone"  style="width: 150px;" />
+                                    </p>
+                                </td>
+                                <td class="input_text tar">qq：</td>
+                                <td>
+                                    <p>
+                                        <input name="qq" type="text" value="" id=""  style="width: 150px;" />
+                                    </p>
+                                </td>
 							</tr>
 						</table>
 					</div>

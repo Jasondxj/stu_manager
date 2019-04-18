@@ -395,28 +395,28 @@
   </update>
     <resultMap id="stuMap" type="student">
         <id column="classNo" property="classno"></id>
-        <result column="sex" property="sex"></result>
-        <result column="name" property="name"></result>
-        <result column="dormNo" property="dormno"></result>
-        <result column="age" property="age"></result>
-        <result column="jointime" property="jointime"></result>
-        <result column="address" property="address"></result>
-        <result column="phone" property="phone"></result>
-        <result column="email" property="email"></result>
-        <result column="qq" property="qq"></result>
+        <id column="sex" property="sex"></id>
+        <id column="name" property="name"></id>
+        <id column="dormNo" property="dormno"></id>
+        <id column="age" property="age"></id>
+        <id column="jointime" property="jointime"></id>
+        <id column="address" property="address"></id>
+        <id column="phone" property="phone"></id>
+        <id column="email" property="email"></id>
+        <id column="qq" property="qq"></id>
+        <id column="departmentId" property="departmentId"></id>
         <association property="department" javaType="department">
-            <id column="id" property="id"></id>
-            <result column="name" property="name"></result>
+            <id column="dname" property="name"></id>
         </association>
     </resultMap>
     <select id="findAll" resultMap="stuMap">
         SELECT
            s.*,
-           d.*
+           d.name dname
         FROM
-            student s,
+            student s LEFT JOIN
             department d
-        WHERE
+        ON
            s.departmentId=d.id
     </select>
 </mapper>

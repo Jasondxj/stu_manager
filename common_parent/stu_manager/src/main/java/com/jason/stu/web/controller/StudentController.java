@@ -25,13 +25,7 @@ public class StudentController {
 
     @RequestMapping("info")
     public String info(Model model) {
-        System.out.println(1212);
         List<Student> students = studentService.findAll();
-        for (Student student : students) {
-            Department department = student.getDepartment();
-            System.out.println(department.getName());
-            System.out.println(student);
-        }
         model.addAttribute("students", students);
         return "student/info";
     }
@@ -39,6 +33,11 @@ public class StudentController {
     @RequestMapping("edit")
     public String edit() {
         return "student/edit";
+    }
+    @RequestMapping("add")
+    public String add(Student student) {
+        studentService.add(student);
+        return "redirect:info.do";
     }
 
 }
