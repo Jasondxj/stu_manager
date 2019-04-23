@@ -16,9 +16,10 @@
 .title {
     height: 80px;
     line-height: 80px;
-    background: #ffc900;
+    /*background: #00ee00;*/
     font-size: 22px;
-    padding:0 30px; 
+    padding:0 30px;
+
 }
 .title img {
     float: left;
@@ -73,7 +74,7 @@
     width: 120px;
     height: 40px;
     border: none;
-    background-color: #ffa800;   
+    background-color: #ffa800;
     text-align: center;
     line-height: 40px;
     color: #000;

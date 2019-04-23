@@ -2,11 +2,19 @@ package com.jason.mapper;
 
 import com.jason.model.Student;
 import com.jason.model.StudentExample;
+import com.jason.model.User;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 public interface StudentMapper {
+    /**
+     * 根据用户名和密码查找学生
+     * @param map
+     * @return
+     */
+    public Student findBynameAndPassword(Map<String,Object> map);
     /**
      * 查找所有学生
      * @return

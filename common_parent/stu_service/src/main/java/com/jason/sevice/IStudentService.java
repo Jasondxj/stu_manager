@@ -33,4 +33,12 @@ public interface IStudentService {
      */
     public List<Student> findByCondition(String name,String sex,String dromno,Integer age);
 
+    /**
+     * 学生登录
+     * @param username
+     * @param password
+     * @return
+     */
+    public Student login(String username,String password);
+
 }

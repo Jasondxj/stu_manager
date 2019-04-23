@@ -420,4 +420,7 @@
         ON
            s.departmentId=d.id
     </select>
+    <select id="findBynameAndPassword" resultType="student" parameterType="hashmap">
+        SELECT * FROM student where username=#{username} and password=#{password}
+    </select>
 </mapper>

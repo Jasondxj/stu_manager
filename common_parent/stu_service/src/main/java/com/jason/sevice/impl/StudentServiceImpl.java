@@ -8,7 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 @Service
 @Transactional
 public class StudentServiceImpl implements IStudentService{
@@ -52,5 +55,14 @@ public class StudentServiceImpl implements IStudentService{
 
         List<Student> students = studentMapper.selectByExample(studentExample);
         return students;
+    }
+
+    @Override
+    public Student login(String username, String password) {
+        Map<String,Object> map=new HashMap<String, Object>();
+        map.put("username",username);
+        map.put("password",password);
+        Student student = studentMapper.findBynameAndPassword(map);
+        return student;
     }
 }

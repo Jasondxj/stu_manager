@@ -28,6 +28,9 @@
         <servlet-name>DispatcherServlet</servlet-name>
         <url-pattern>*.do</url-pattern>
     </servlet-mapping>
+
+
+    <!--处理字符编码-->
     <filter>
         <filter-name>EncodingFilter</filter-name>
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>

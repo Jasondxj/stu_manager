@@ -1,6 +1,8 @@
 package com.jason.stu.web.controller;
 
 import com.jason.model.User;
+import com.jason.sevice.IStudentService;
+import com.jason.sevice.ITeacherService;
 import com.jason.sevice.IUserService;
 import com.jason.stu.web.controller.base.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,12 +14,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
+import static javafx.scene.input.KeyCode.T;
+
 @Controller
 @RequestMapping("user")
 public class UserController extends BaseController<User>{
 
     @Autowired
     private IUserService userService;
+    @Autowired
+    private IStudentService studentService;
+    @Autowired
+    private ITeacherService teacherService;
 
     /**
      * 登录
@@ -26,8 +34,19 @@ public class UserController extends BaseController<User>{
      * @return
      */
     @RequestMapping("login")
-    public String login(User user, HttpServletRequest request){
-        User loginUser = userService.login(user.getUsername(), user.getPassword());
+    public String login(User user, HttpServletRequest request,String role){
+
+        Object loginUser=null;
+        if ("管理员".equals(role)){
+             loginUser = userService.login(user.getUsername(), user.getPassword());
+        }
+        if ("学生".equals(role)){
+            loginUser=studentService.login(user.getUsername(),user.getPassword());
+        }
+        if ("老师".equals(role)){
+            loginUser=teacherService.login(user.getUsername(),user.getPassword());
+            System.out.println(loginUser);
+        }
         HttpSession session = request.getSession();
         if (loginUser==null){
             session.setAttribute("msg","用户名或密码错误");
@@ -36,7 +55,7 @@ public class UserController extends BaseController<User>{
             session.setAttribute("user",loginUser);
             return "Default";
         }
-        return "user/login";
+        return "login";
     }
 
     /**
@@ -78,7 +97,7 @@ public class UserController extends BaseController<User>{
     @RequestMapping("exit")
     public String exit(HttpSession session){
         session.removeAttribute("user");
-        return "user/login";
+        return "login";
     }
 
     /**

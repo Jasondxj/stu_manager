@@ -15,21 +15,19 @@
 
 </head>
 
-<body>
-<!--引入头部-->
-<div id="header"></div>
+<body style="background: url(../../assets/Images/23.jpg)">
+
 <!-- 头部 end -->
 <section id="login_wrap">
-    <div class="fullscreen-bg" style="background: url(../../../assets/Images/23.jpg);height: 532px;">
+    <div class="fullscreen-bg" style="height: 532px;">
 
     </div>
     <div class="login-box">
-        <div class="title">
-            <img src="../../../assets/Images/login_logo.png" alt="">
+        <div class="title" style="background-color:#76d8c2;">
+            <img src="../../assets/Images/login_logo.png" alt="">
             <span>欢迎登录学生管理系统</span>
         </div>
         <div class="login_inner">
-
             <!--登录错误提示消息-->
             <div id="errorMsg" class="alert alert-danger">${msg}</div>
             <form id="loginForm" action="${pageContext.request.contextPath}/user/login.do" method="post"
@@ -47,12 +45,14 @@
                 <%--}--%>
                 <%--</script>--%>
                 <%--</div>--%>
+                    <input type="radio" value="管理员" name="role" style="width: 20px;height:15px;vertical-align: text-top;margin-top: 2px" checked="checked">管理员
+                    <input type="radio" value="老师" name="role" style="width: 20px;height:15px;vertical-align: text-top;margin-top: 2px;margin-left: 20px">老师
+                    <input type="radio" value="学生" name="role" style="width: 20px;height:15px;vertical-align: text-top;margin-top: 2px;margin-left: 20px">学生
                 <div class="submit_btn">
                     <%--<button type="button"  id="btn_sub">登录</button>--%>
                     <input type="submit" value="登录" style="margin-top: 20px;height: 40px">
                 </div>
             </form>
-
             <div class="reg">没有账户？<a href="${pageContext.request.contextPath}/user/toRegister.do">立即注册</a></div>
         </div>
     </div>
