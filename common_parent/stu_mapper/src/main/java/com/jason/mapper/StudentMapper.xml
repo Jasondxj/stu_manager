@@ -406,6 +406,8 @@
         <id column="email" property="email"></id>
         <id column="qq" property="qq"></id>
         <id column="departmentId" property="departmentId"></id>
+        <id column="username" property="username"></id>
+        <id column="password" property="password"></id>
         <association property="department" javaType="department">
             <id column="dname" property="name"></id>
         </association>
@@ -422,5 +424,17 @@
     </select>
     <select id="findBynameAndPassword" resultType="student" parameterType="hashmap">
         SELECT * FROM student where username=#{username} and password=#{password}
+    </select>
+    <select id="findBySno" resultMap="stuMap" parameterType="string">
+         SELECT
+           s.*,
+           d.name dname
+        FROM
+            student s LEFT JOIN
+            department d
+        ON
+           s.departmentId=d.id
+        WHERE
+           s.sno=#{sno}
     </select>
 </mapper>

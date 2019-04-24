@@ -79,7 +79,7 @@
 		<!--====下面是页脚====-->
 		<div class="footer">
 			<footer>
-				<p>  版权所有 @ 2018 jason </p>
+				<p>  版权所有 @ 2019 jason </p>
 			</footer>
 		</div>
 	</form>

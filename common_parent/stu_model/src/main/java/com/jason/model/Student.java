@@ -419,7 +419,10 @@ public class Student {
     @Override
     public String toString() {
         return "Student{" +
-                "sno='" + sno + '\'' +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", department=" + department +
+                ", sno='" + sno + '\'' +
                 ", classno='" + classno + '\'' +
                 ", sex='" + sex + '\'' +
                 ", name='" + name + '\'' +

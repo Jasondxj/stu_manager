@@ -84,5 +84,23 @@ public class StudentController {
         model.addAttribute("students",students);
         return "student/info";
     }
+    @RequestMapping("Myinfo")
+    public String MyInfo(String sno,Model model){
+        Student student = studentService.findBySno(sno);
+        model.addAttribute("student",student);
+        return "student/Myinfo";
+    }
+    @RequestMapping("toUpdate")
+    public String toUpdate(String sno,Model model){
+        Student student = studentService.findBySno(sno);
+        System.out.println(student);
+        model.addAttribute("student",student);
+        return "student/update";
+    }
+    @RequestMapping("update")
+    public String update(Student student,Model model){
+        studentService.updateBySno(student);
+        return "forward:Myinfo.do";
+    }
 
 }

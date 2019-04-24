@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface StudentMapper {
+    public Student findBySno(String sno);
     /**
      * 根据用户名和密码查找学生
      * @param map

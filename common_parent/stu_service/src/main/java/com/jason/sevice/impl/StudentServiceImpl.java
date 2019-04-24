@@ -65,4 +65,15 @@ public class StudentServiceImpl implements IStudentService{
         Student student = studentMapper.findBynameAndPassword(map);
         return student;
     }
+
+    @Override
+    public Student findBySno(String sno) {
+        Student student = studentMapper.findBySno(sno);
+        return student;
+    }
+
+    @Override
+    public void updateBySno(Student student) {
+        studentMapper.updateByPrimaryKeySelective(student);
+    }
 }

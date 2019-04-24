@@ -64,9 +64,9 @@
         <div class="edit">
             <h3 class="total_title">查询结果</h3>
             <ul>
-                <li><input type="button" value="新增" class="addition"
-                           data-url="${pageContext.request.contextPath}/student/edit.do"
-                           onclick="Common.showPage(this);"/></li>
+                <li>
+                <a href="${pageContext.request.contextPath}/student/edit.do">新增</a>
+                </li>
             </ul>
         </div>
     </div>
