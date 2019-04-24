@@ -18,6 +18,11 @@
                                data-name="common_iframe" onclick="Common.switchNavigation(this);"
 							   data-url="${pageContext.request.contextPath}/student/Myinfo.do?sno=${student.sno}">基本信息</a>
 						</li>
+                        <li class="nav_current">
+                            <a href="#" class="subNavigation" id="A0012010"
+                               data-name="common_iframe" onclick="Common.switchNavigation(this);"
+                               data-url="${pageContext.request.contextPath}/student/Myinfo.do?sno=${student.sno}">基本信息</a>
+                        </li>
                     </ul>
                 </div>
             </div>
