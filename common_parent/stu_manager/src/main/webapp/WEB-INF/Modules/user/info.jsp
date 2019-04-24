@@ -51,9 +51,9 @@
 			<div class="edit">
 				<h3 class="total_title">查询结果</h3>
 				<ul>
-					<li><input type="button" value="新增" class="addition"
-						data-url="${pageContext.request.contextPath}/user/edit.do"
-						onclick="Common.showPage(this);" /></li>
+					<li>
+                        <a href="${pageContext.request.contextPath}/user/edit.do">新增</a>
+                    </li>
 				</ul>
 			</div>
 		</div>
@@ -85,9 +85,10 @@
                             <td style="width: 80px; text-align: center;"><p><span >${user.gender}</span></p></td>
 
                             <td class="delete" style="width: 210px; text-align: center;">
-                                <p><input type="button" onclick="Common.showPage(this);" value="编辑"
-                                          data-url="${pageContext.request.contextPath}/user/toUpdate.do" />
+                                <p>
+                                    <a href="${pageContext.request.contextPath}/user/toUpdate.do?id=${user.id}">编辑</a>
                                     <a href="${pageContext.request.contextPath}/user/delete.do?id=${user.id}">删除</a>
+                                </p>
                             </td>
                         </tr>
                     </c:forEach>
@@ -96,17 +97,8 @@
 			</div>
 		</div>
 
-		<!-- 分页查询 -->
-		<div class="page">
-			<p class="page_number">
-				<a href="javascript:void(0)" onclick="this.href='#'">[第一页]</a>
-				<a href="javascript:void(0)" onclick="this.href='#'">[上一页]</a>
-				<a href="javascript:void(0)" onclick="this.href='#'">[下一页]</a>
-				<a href="javascript:void(0)" onclick="this.href='#'">[最后一页]</a>
-				<span>1/2</span>
-				<span>每页显示</span>8条记录 共20条记录
-			</p>
-		</div>
+
+
 
 		<div class="specific_page tal dn" id="popupLayer">
         <!--这里删除了style属性-->

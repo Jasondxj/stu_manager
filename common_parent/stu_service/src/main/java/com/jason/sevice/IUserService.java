@@ -19,5 +19,7 @@ public interface IUserService extends IBaseService<User>{
 
     public void updateById(User user);
 
+    public User findById(Integer id);
+
 
 }

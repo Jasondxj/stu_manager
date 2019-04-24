@@ -24,7 +24,7 @@
     </div>
     <div class="login-box">
         <div class="title" style="background-color:#76d8c2;">
-            <img src="../../assets/Images/login_logo.png" alt="">
+            <img src="../../assets/Images/login.png" style="width: 61px;height: 56px" >
             <span>欢迎登录学生管理系统</span>
         </div>
         <div class="login_inner">

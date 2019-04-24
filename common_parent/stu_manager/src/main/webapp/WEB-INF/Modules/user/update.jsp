@@ -11,10 +11,10 @@
             $("#userForm").submit();
         }
 
-        $(document).ready(function () {
+        function updateClose() {
+            location.href="${pageContext.request.contextPath}/user/info.do";
+        }
 
-
-        });
     </script>
 </head>
 <body>
@@ -25,7 +25,7 @@
                 <h4 class="specificPage_title l">
                     <span id="MainContent_lbTitle">修改</span>
                 </h4>
-                <span class="closePage r" onclick="Common.closePage();">关闭</span>
+                <span class="closePage r" onclick="updateClose();">关闭</span>
             </div>
             <div id="MainContent_divTitleTab" class="activeEdite_tab_list"
                  style="margin-bottom: 3px;">
@@ -43,14 +43,14 @@
                                 <p>
                                     <input name="id" type="hidden" value="${user.id}"/>
                                     <input name="username" type="text" value="${user.username}" id="username"
-                                           style="width: 150px;" readonly="readonly"/>
+                                           style="width: 150px;" />
                                 </p>
                             </td>
                             <td class="input_text tar">密码：</td>
                             <td>
                                 <p>
                                     <input name="password" type="text" value="${user.password}" id="password"
-                                           style="width: 150px;" readonly="readonly"/>
+                                           style="width: 150px;" />
                                 </p>
                             </td>
                             <td class="input_text tar">手机号码：</td>
@@ -83,7 +83,7 @@
             <div class="form_btn form_btn_static">
                 <ul>
                     <li><input type="button" value="保存" onclick="userUpdate();"/></li>
-                    <li><input type="button" value="关闭" onclick="Common.closePage();"/></li>
+                    <li><input type="button" value="关闭" onclick="updateClose()"/></li>
                 </ul>
             </div>
         </div>

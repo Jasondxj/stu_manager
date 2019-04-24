@@ -15,7 +15,8 @@ public class LoginInterceptor implements HandlerInterceptor {
             return true;//放行
         }
         //2.如果已经登录，也要放行
-        if(request.getSession().getAttribute("user") != null){
+        if(request.getSession().getAttribute("user") != null||request.getSession().getAttribute("teacher") != null
+                ||request.getSession().getAttribute("student") != null){
             return true;
         }
         //3.进入到login页面

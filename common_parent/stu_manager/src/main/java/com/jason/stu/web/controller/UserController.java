@@ -14,11 +14,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
-import static javafx.scene.input.KeyCode.T;
 
 @Controller
 @RequestMapping("user")
-public class UserController extends BaseController<User>{
+public class UserController extends BaseController<User> {
 
     @Autowired
     private IUserService userService;
@@ -29,99 +28,116 @@ public class UserController extends BaseController<User>{
 
     /**
      * 登录
+     *
      * @param user
      * @param request
      * @return
      */
     @RequestMapping("login")
-    public String login(User user, HttpServletRequest request,String role){
-
-        Object loginUser=null;
-        if ("管理员".equals(role)){
-             loginUser = userService.login(user.getUsername(), user.getPassword());
-        }
-        if ("学生".equals(role)){
-            loginUser=studentService.login(user.getUsername(),user.getPassword());
-        }
-        if ("老师".equals(role)){
-            loginUser=teacherService.login(user.getUsername(),user.getPassword());
-            System.out.println(loginUser);
-        }
+    public String login(User user, HttpServletRequest request, String role) {
+        Object loginUser = null;
         HttpSession session = request.getSession();
-        if (loginUser==null){
-            session.setAttribute("msg","用户名或密码错误");
+        if ("管理员".equals(role)) {
+            loginUser = userService.login(user.getUsername(), user.getPassword());
+            if (loginUser != null) {
+                session.setAttribute("user", loginUser);
+                return "user/Default";
+            }
+            session.setAttribute("msg", "用户名或密码错误");
+            return "login";
         }
-        if (loginUser!=null){
-            session.setAttribute("user",loginUser);
-            return "Default";
+        if ("学生".equals(role)) {
+            loginUser = studentService.login(user.getUsername(), user.getPassword());
+            if (loginUser != null) {
+                session.setAttribute("student", loginUser);
+                return "student/default";
+            }
+            session.setAttribute("msg", "用户名或密码错误");
+            return "login";
+        }
+        if ("老师".equals(role)) {
+            loginUser = teacherService.login(user.getUsername(), user.getPassword());
+            if (loginUser != null) {
+                session.setAttribute("teacher", loginUser);
+                return "teacher/default";
+            }
+            session.setAttribute("msg", "用户名或密码错误");
+            return "login";
         }
         return "login";
     }
 
     /**
      * 返回管理页面
+     *
      * @return
      */
     @RequestMapping(MANAGE)
-    public String manage(){
+    public String manage() {
         return MANAGE_PAGE;
     }
 
     /**
      * 返回详情页面
+     *
      * @param model
      * @return
      */
     @RequestMapping(INFO)
-    public String info(Model model){
+    public String info(Model model) {
         //查询用户数据
         List<User> users = userService.findAll();
-        model.addAttribute("users",users);
+        model.addAttribute("users", users);
         return "user/info";
     }
 
     /**
      * 返回修改页面
+     *
      * @return
      */
     @RequestMapping(EDIT)
-    public String edit(){
+    public String edit() {
         return EDIT_PAGE;
     }
 
     /**
      * 注销
+     *
      * @param session
      * @return
      */
     @RequestMapping("exit")
-    public String exit(HttpSession session){
-        session.removeAttribute("user");
+    public String exit(HttpSession session) {
+        session.invalidate();
         return "login";
     }
 
     /**
      * 访问注册页面
+     *
      * @return
      */
     @RequestMapping("toRegister")
-    public String toRegister(){
+    public String toRegister() {
         return "user/register";
     }
 
     /**
      * 注册
+     *
      * @param user
      * @return
      */
     @RequestMapping("register")
-    public String register(User user){
+    public String register(User user) {
         userService.save(user);
         return "user/register_ok";
     }
 
     /**
      * 条件查找
+     *
      * @param username
      * @param gender
      * @param email
@@ -130,36 +146,41 @@ public class UserController extends BaseController<User>{
      * @return
      */
     @RequestMapping("search")
-    public String search(String username,String gender,  String email, String name, Model model){
+    public String search(String username, String gender, String email, String name, Model model) {
         System.out.println(gender);
         List<User> users = userService.findByCondition(username, gender, email, name);
-        model.addAttribute("users",users);
+        model.addAttribute("users", users);
         return "user/info";
     }
 
     /**
      * 添加用户
+     *
      * @param user
      * @return
      */
     @RequestMapping("add")
-    public String add(User user){
+    public String add(User user) {
         userService.save(user);
         return "forward:info.do";
     }
+
     @RequestMapping("delete")
-    public String delete(Integer id){
+    public String delete(Integer id) {
         userService.deleteById(id);
         return "forward:info.do";
     }
+
     @RequestMapping("toUpdate")
-    public String toUpdate(){
+    public String toUpdate(Integer id,Model model) {
+        User user = userService.findById(id);
+        model.addAttribute("user",user);
         return "user/update";
     }
+
     @RequestMapping("update")
-    public String update(User user){
+    public String update(User user) {
         userService.updateById(user);
         return "forward:info.do";
     }
-
 }
