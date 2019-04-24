@@ -1,6 +1,8 @@
 package com.jason.sevice;
 
+import com.jason.model.PageBean;
 import com.jason.model.Student;
+import com.jason.model.Teacher;
 
 import java.util.List;
 
@@ -60,5 +62,13 @@ public interface IStudentService {
      * @param student
      */
     public void updateBySno(Student student);
+
+    /**
+     * 分页查询
+     * @param currentPage
+     * @param pageSize
+     * @return
+     */
+    public PageBean<Student> pageQuery(int currentPage, int pageSize);
 
 }

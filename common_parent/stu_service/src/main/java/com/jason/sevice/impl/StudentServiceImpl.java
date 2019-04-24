@@ -1,8 +1,7 @@
 package com.jason.sevice.impl;
 
 import com.jason.mapper.StudentMapper;
-import com.jason.model.Student;
-import com.jason.model.StudentExample;
+import com.jason.model.*;
 import com.jason.sevice.IStudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -75,5 +74,25 @@ public class StudentServiceImpl implements IStudentService{
     @Override
     public void updateBySno(Student student) {
         studentMapper.updateByPrimaryKeySelective(student);
+    }
+
+    @Override
+    public PageBean<Student> pageQuery(int currentPage, int pageSize) {
+        PageBean<Student> pb = new PageBean<Student>();
+        pb.setCurrentPage(currentPage);
+        pb.setPageSize(pageSize);
+        StudentExample example=new StudentExample();
+        int totalCount = studentMapper.countByExample(example);
+        pb.setTotalCount(totalCount);
+        int start = (currentPage - 1) * pageSize;
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("start", start);
+        map.put("pageSize", pageSize);
+        List<Student> students = studentMapper.findByPage(map);
+        pb.setList(students);
+        int totalPage = totalCount % pageSize == 0 ? totalCount / pageSize : (totalCount / pageSize) + 1;
+        pb.setTotalPage(totalPage);
+        return pb;
+
     }
 }

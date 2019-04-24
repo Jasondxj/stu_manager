@@ -1,7 +1,9 @@
 package com.jason.stu.web.controller;
 
 import com.jason.model.Department;
+import com.jason.model.PageBean;
 import com.jason.model.Student;
+import com.jason.model.Teacher;
 import com.jason.sevice.IStudentService;
 import com.jason.sevice.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -76,10 +79,6 @@ public class StudentController {
      */
     @RequestMapping("search")
     public String search(String name,String sex,String dromno,Integer age,Model model) {
-        System.out.println(name);
-        System.out.println(sex);
-        System.out.println(dromno);
-
         List<Student> students = studentService.findByCondition(name, sex, dromno,age);
         model.addAttribute("students",students);
         return "student/info";
@@ -92,6 +91,7 @@ public class StudentController {
     }
     @RequestMapping("toUpdate")
     public String toUpdate(String sno,Model model){
+        System.out.println(sno);
         Student student = studentService.findBySno(sno);
         System.out.println(student);
         model.addAttribute("student",student);
@@ -102,5 +102,13 @@ public class StudentController {
         studentService.updateBySno(student);
         return "forward:Myinfo.do";
     }
-
+    @RequestMapping("pageQuery")
+    public String PageQuery(Model model, HttpSession session, Integer currentPage) {
+        session.setAttribute("currentPage", currentPage);
+        int pageSize = 3;
+        PageBean<Student> pb = studentService.pageQuery(currentPage, pageSize);
+        model.addAttribute("students", pb.getList());
+        session.setAttribute("pb", pb);
+        return "student/info";
+    }
 }

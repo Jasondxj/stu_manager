@@ -28,7 +28,7 @@
             <div id="MainContent_divTitleTab" class="activeEdite_tab_list"
                  style="margin-bottom: 3px;">
                 <p>
-                    <span class="tab_list_current" data-tab="tab_1" onclick="Common.switchTab(this);">修改用户信息</span>
+                    <span class="tab_list_current" data-tab="tab_1" onclick="Common.switchTab(this);">修改学生信息</span>
                 </p>
             </div>
 

@@ -2,6 +2,7 @@ package com.jason.mapper;
 
 import com.jason.model.Student;
 import com.jason.model.StudentExample;
+import com.jason.model.Teacher;
 import com.jason.model.User;
 import org.apache.ibatis.annotations.Param;
 
@@ -108,4 +109,5 @@ public interface StudentMapper {
      * @mbggenerated Thu Apr 18 14:12:51 CST 2019
      */
     int updateByPrimaryKey(Student record);
+    List<Student> findByPage(Map<String,Object> map);
 }

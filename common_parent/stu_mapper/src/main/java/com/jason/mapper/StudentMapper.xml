@@ -437,4 +437,8 @@
         WHERE
            s.sno=#{sno}
     </select>
+    <select id="findByPage" parameterType="hashmap" resultType="student">
+        SELECT * FROM student
+        limit #{start},#{pageSize}
+    </select>
 </mapper>
