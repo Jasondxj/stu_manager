@@ -67,9 +67,11 @@ public class StudentController {
      * @return
      */
     @RequestMapping("delete")
-    public String delete(String sno) {
+    public String delete(String sno,HttpSession session) {
+        PageBean<Student> pb = (PageBean<Student>) session.getAttribute("pb");
+        int currentPage = pb.getCurrentPage();
         studentService.deleteBySno(sno);
-        return "forward:info.do";
+        return "forward:pageQuery.do?currentPage="+currentPage;
     }
 
     /**

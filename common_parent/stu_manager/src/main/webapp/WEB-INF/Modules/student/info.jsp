@@ -65,7 +65,7 @@
             <h3 class="total_title">查询结果</h3>
             <ul>
                 <li>
-                <a href="${pageContext.request.contextPath}/student/edit.do">新增</a>
+                    <a href="${pageContext.request.contextPath}/student/edit.do">新增</a>
                 </li>
             </ul>
         </div>
@@ -116,7 +116,7 @@
                             <p>
                                 <a href="${pageContext.request.contextPath}/teacher/toStuUpdate.do?sno=${student.sno}">编辑</a>
                                 <a href="${pageContext.request.contextPath}/student/delete.do?sno=${student.sno}">删除</a>
-
+                            </p>
                         </td>
                     </tr>
                 </c:forEach>
@@ -125,22 +125,27 @@
         </div>
     </div>
     <script>
-        var nextPage=${currentPage}+1;
-        if (nextPage>=${pb.totalPage}){
-            nextPage=${pb.totalPage}
+        var nextPage = ${currentPage}+1;
+        if (nextPage >=${pb.totalPage}) {
+            nextPage =
+            ${pb.totalPage}
         }
-        var perPage=${currentPage}-1;
-        if (perPage<=1){
-            perPage=1;
+        var perPage = ${currentPage}-1;
+        if (perPage <= 1) {
+            perPage = 1;
         }
     </script>
     <!-- 分页查询 -->
     <div class="page">
         <p class="page_number">
-            <a href="javascript:void(0)" onclick="this.href='${pageContext.request.contextPath}/student/pageQuery.do?currentPage=1'">[第一页]</a>
-            <a href="javascript:void(0)" onclick="this.href='${pageContext.request.contextPath}/student/pageQuery.do?currentPage='+perPage+''">[上一页]</a>
-            <a href="javascript:void(0)" onclick="this.href='${pageContext.request.contextPath}/student/pageQuery.do?currentPage='+nextPage+''">[下一页]</a>
-            <a href="javascript:void(0)" onclick="this.href='${pageContext.request.contextPath}/student/pageQuery.do?currentPage=${pb.totalPage}'">[最后一页]</a>
+            <a href="javascript:void(0)"
+               onclick="this.href='${pageContext.request.contextPath}/student/pageQuery.do?currentPage=1'">[第一页]</a>
+            <a href="javascript:void(0)"
+               onclick="this.href='${pageContext.request.contextPath}/student/pageQuery.do?currentPage='+perPage+''">[上一页]</a>
+            <a href="javascript:void(0)"
+               onclick="this.href='${pageContext.request.contextPath}/student/pageQuery.do?currentPage='+nextPage+''">[下一页]</a>
+            <a href="javascript:void(0)"
+               onclick="this.href='${pageContext.request.contextPath}/student/pageQuery.do?currentPage=${pb.totalPage}'">[最后一页]</a>
             <span>${pb.currentPage}/${pb.totalPage}</span>
             <span>每页显示</span>${pb.pageSize}条记录 共${pb.totalCount}条记录
         </p>

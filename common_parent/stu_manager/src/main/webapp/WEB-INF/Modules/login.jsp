@@ -12,7 +12,46 @@
     <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <!--导入jquery-->
     <script src="${pageContext.request.contextPath}/assets/Scripts/jquery-3.3.1.js"></script>
+    <script>
+        function checkUsername() {
+            var username = $("#username").val();
+            var reg_name = /\S/;
+            var flag = reg_name.test(username);
+            if (flag) {
+                $("#username").css("border", "");
+                $("#Umsg").html("");
+            } else {
+                $("#username").css("border", "1px solid red");
+                $("#Umsg").html("用户名不能为空");
+            }
+            return flag;
+        }
+        function checkPassword() {
+            var password = $("#password").val();
+            var reg_password = /\S/;
+            var flag = reg_password.test(password);
+            if (flag) {
+                $("#password").css("border", "");
+                $("#Pmsg").html("");
+            } else {
+                $("#password").css("border", "1px solid red");
+                $("#Pmsg").html("密码不能为空");
+            }
+            return flag;
 
+        }
+
+        $(function () {
+            $("#loginForm").submit(function () {
+                if (checkUsername() && checkPassword()) {
+                    return true;
+                }
+                return false;
+            });
+            $("#username").blur(checkUsername);
+            $("#password").blur(checkPassword);
+        })
+    </script>
 </head>
 
 <body style="background: url(../../assets/Images/23.jpg)">
@@ -22,9 +61,9 @@
     <div class="fullscreen-bg" style="height: 532px;">
 
     </div>
-    <div class="login-box">
+    <div class="login-box" style="height: 500px">
         <div class="title" style="background-color:#76d8c2;">
-            <img src="../../assets/Images/login.png" style="width: 61px;height: 56px" >
+            <img src="../../assets/Images/login.png" style="width: 61px;height: 56px">
             <span>欢迎登录学生管理系统</span>
         </div>
         <div class="login_inner">
@@ -32,24 +71,17 @@
             <div id="errorMsg" class="alert alert-danger">${msg}</div>
             <form id="loginForm" action="${pageContext.request.contextPath}/user/login.do" method="post"
                   accept-charset="utf-8">
-                <input type="hidden" name="action" value="login"/>
-                <input name="username" type="text" placeholder="请输入账号" autocomplete="off">
-                <input name="password" type="password" placeholder="请输入密码" autocomplete="off">
-                <%--<div class="verify">--%>
-                <%--<input name="check" type="text" placeholder="请输入验证码" autocomplete="off">--%>
-                <%--<span><img src="checkCode" alt="验证码" onclick="changeCheckCode(this)"></span>--%>
-                <%--<script type="text/javascript">--%>
-                <%--图片点击事件--%>
-                <%--function changeCheckCode(img) {--%>
-                <%--img.src="checkCode?"+new Date().getTime();--%>
-                <%--}--%>
-                <%--</script>--%>
-                <%--</div>--%>
-                    <input type="radio" value="管理员" name="role" style="width: 20px;height:15px;vertical-align: text-top;margin-top: 2px" checked="checked">管理员
-                    <input type="radio" value="老师" name="role" style="width: 20px;height:15px;vertical-align: text-top;margin-top: 2px;margin-left: 20px">老师
-                    <input type="radio" value="学生" name="role" style="width: 20px;height:15px;vertical-align: text-top;margin-top: 2px;margin-left: 20px">学生
+                <input name="username" type="text" placeholder="请输入账号" autocomplete="off" id="username">
+                <span id="Umsg" style="color: red;font-size: 16px;display: block"></span>
+                <input name="password" type="password" placeholder="请输入密码" autocomplete="off" id="password">
+                <span id="Pmsg" style="color: red;display: block;font-size: 16px"></span>
+                <input type="radio" value="管理员" name="role"
+                       style="width: 20px;height:15px;vertical-align: text-top;margin-top: 2px" checked="checked">管理员
+                <input type="radio" value="老师" name="role"
+                       style="width: 20px;height:15px;vertical-align: text-top;margin-top: 2px;margin-left: 20px">老师
+                <input type="radio" value="学生" name="role"
+                       style="width: 20px;height:15px;vertical-align: text-top;margin-top: 2px;margin-left: 20px">学生
                 <div class="submit_btn">
-                    <%--<button type="button"  id="btn_sub">登录</button>--%>
                     <input type="submit" value="登录" style="margin-top: 20px;height: 40px">
                 </div>
             </form>

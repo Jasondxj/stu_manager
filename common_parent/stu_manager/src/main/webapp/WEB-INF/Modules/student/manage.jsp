@@ -10,18 +10,23 @@
     <div class="main">
         <div class="sidbar" id="sidbar">
             <div class="sub_nav">
-                <h2><p class="systemIcon">个人信息</p></h2>
+                <h2><p class="systemIcon">基本功能</p></h2>
                 <div class="switch_subNav">
                     <ul id="show_iframe" class="switch_nav">
 						<li class="nav_current">
 							<a href="#" class="subNavigation" id="A001010"
                                data-name="common_iframe" onclick="Common.switchNavigation(this);"
-							   data-url="${pageContext.request.contextPath}/student/Myinfo.do?sno=${student.sno}">基本信息</a>
+							   data-url="${pageContext.request.contextPath}/student/Myinfo.do?sno=${student.sno}">个人信息修改</a>
 						</li>
                         <li class="nav_current">
                             <a href="#" class="subNavigation" id="A0012010"
                                data-name="common_iframe" onclick="Common.switchNavigation(this);"
-                               data-url="${pageContext.request.contextPath}/student/Myinfo.do?sno=${student.sno}">基本信息</a>
+                               data-url="${pageContext.request.contextPath}">选课</a>
+                        </li>
+                        <li class="nav_current">
+                            <a href="#" class="subNavigation" id="A00120120"
+                               data-name="common_iframe" onclick="Common.switchNavigation(this);"
+                               data-url="${pageContext.request.contextPath}/student/Myinfo.do?sno=${student.sno}">成绩查询</a>
                         </li>
                     </ul>
                 </div>
