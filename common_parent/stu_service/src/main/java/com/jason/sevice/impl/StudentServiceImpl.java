@@ -1,5 +1,7 @@
 package com.jason.sevice.impl;
 
+import com.jason.mapper.CoreMapper;
+import com.jason.mapper.CourseMapper;
 import com.jason.mapper.StudentMapper;
 import com.jason.model.*;
 import com.jason.sevice.IStudentService;
@@ -13,9 +15,29 @@ import java.util.Map;
 
 @Service
 @Transactional
-public class StudentServiceImpl implements IStudentService{
+public class StudentServiceImpl implements IStudentService {
     @Autowired
     private StudentMapper studentMapper;
+    @Autowired
+    private CourseMapper courseMapper;
+    @Autowired
+    private CoreMapper coreMapper;
+
+    @Override
+    public List<Course> findAllCourse(String sno) {
+        List<Course> allCourse = studentMapper.findAllCourse(sno);
+        return allCourse;
+    }
+
+    @Override
+    public Core findCoreBySno(String sno, String cno) {
+        CoreKey coreKey=new CoreKey();
+        coreKey.setCno(cno);
+        coreKey.setSno(sno);
+        Core core = coreMapper.selectByPrimaryKey(coreKey);
+        return core;
+    }
+
     @Override
     public List<Student> findAll() {
         List<Student> students = studentMapper.findAll();
@@ -33,24 +55,24 @@ public class StudentServiceImpl implements IStudentService{
     }
 
     @Override
-    public List<Student> findByCondition(String name, String sex, String dromno,Integer age) {
-        StudentExample studentExample=new StudentExample();
+    public List<Student> findByCondition(String name, String sex, String dromno, Integer age) {
+        StudentExample studentExample = new StudentExample();
         StudentExample.Criteria criteria = studentExample.createCriteria();
 //        criteria.andNameLike(name);
 //        criteria.andSexLike(sex);
 //        criteria.andDormnoLike(dromno);
-        if (name!=null&&name!=""){
-            criteria.andNameLike("%"+name+"%");
+        if (name != null && name != "") {
+            criteria.andNameLike("%" + name + "%");
         }
-        if (sex!=null&&sex!=""){
-            criteria.andSexLike("%"+sex+"%");
+        if (sex != null && sex != "") {
+            criteria.andSexLike("%" + sex + "%");
         }
-       if (dromno!=null&&dromno!=""){
-           criteria.andDormnoLike("%"+dromno+"%");
-       }
-       if (age!=null&&age>0){
+        if (dromno != null && dromno != "") {
+            criteria.andDormnoLike("%" + dromno + "%");
+        }
+        if (age != null && age > 0) {
             criteria.andAgeEqualTo(age);
-       }
+        }
 
         List<Student> students = studentMapper.selectByExample(studentExample);
         return students;
@@ -58,9 +80,9 @@ public class StudentServiceImpl implements IStudentService{
 
     @Override
     public Student login(String username, String password) {
-        Map<String,Object> map=new HashMap<String, Object>();
-        map.put("username",username);
-        map.put("password",password);
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("username", username);
+        map.put("password", password);
         Student student = studentMapper.findBynameAndPassword(map);
         return student;
     }
@@ -81,7 +103,7 @@ public class StudentServiceImpl implements IStudentService{
         PageBean<Student> pb = new PageBean<Student>();
         pb.setCurrentPage(currentPage);
         pb.setPageSize(pageSize);
-        StudentExample example=new StudentExample();
+        StudentExample example = new StudentExample();
         int totalCount = studentMapper.countByExample(example);
         pb.setTotalCount(totalCount);
         int start = (currentPage - 1) * pageSize;
@@ -94,5 +116,19 @@ public class StudentServiceImpl implements IStudentService{
         pb.setTotalPage(totalPage);
         return pb;
 
+    }
+
+    @Override
+    public List<Course> findAllCourse() {
+        List<Course> courses = courseMapper.findAll();
+        return courses;
+    }
+
+    @Override
+    public void addCourse(String sno, String cno) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("sno",sno);
+        map.put("cno",cno);
+        coreMapper.insertCore(map);
     }
 }

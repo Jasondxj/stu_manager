@@ -268,4 +268,7 @@
     where sno = #{sno,jdbcType=VARCHAR}
       and cno = #{cno,jdbcType=VARCHAR}
   </update>
+    <insert id="insertCore" parameterType="hashmap">
+        INSERT INTO core(sno,cno) VALUES (#{sno},#{cno})
+    </insert>
 </mapper>

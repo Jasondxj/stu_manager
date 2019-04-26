@@ -23,7 +23,7 @@
 							<li><h2 class="version"></h2></li>
 							<li><span class="header_hi">Hi,</span><span
 								class="header_usename">${user.username}</span>！</li>
-							<li><a href="${pageContext.request.contextPath}/user/exit.do">注销</a></li>
+							<li><a href="${pageContext.request.contextPath}/user/exit.do" id="exit">退出</a></li>
 							<li class="rel"><a href="#" class="system_infor"
 								id="system_infor" onclick="showMessageList();">系统消息(0)</a>
 								<div id="Div1" class="dn"></div></li>

@@ -21,12 +21,17 @@
                         <li class="nav_current">
                             <a href="#" class="subNavigation" id="A0012010"
                                data-name="common_iframe" onclick="Common.switchNavigation(this);"
-                               data-url="${pageContext.request.contextPath}">选课</a>
+                               data-url="${pageContext.request.contextPath}/student/courseInfo.do">选课</a>
+                        </li>
+                        <li class="nav_current">
+                            <a href="#" class="subNavigation" id="A0010"
+                               data-name="common_iframe" onclick="Common.switchNavigation(this);"
+                               data-url="${pageContext.request.contextPath}/student/myCourse.do?sno=${student.sno}">已选课程</a>
                         </li>
                         <li class="nav_current">
                             <a href="#" class="subNavigation" id="A00120120"
                                data-name="common_iframe" onclick="Common.switchNavigation(this);"
-                               data-url="${pageContext.request.contextPath}/student/Myinfo.do?sno=${student.sno}">成绩查询</a>
+                               data-url="${pageContext.request.contextPath}/student/coreInfo.do?sno=${student.sno}">成绩查询</a>
                         </li>
                     </ul>
                 </div>

@@ -1,15 +1,24 @@
 package com.jason.mapper;
 
-import com.jason.model.Student;
-import com.jason.model.StudentExample;
-import com.jason.model.Teacher;
-import com.jason.model.User;
+import com.jason.model.*;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
 
 public interface StudentMapper {
+    /**
+     * 查询学生选修的所有课程
+     * @param sno
+     * @return
+     */
+    public List<Course> findAllCourse(String sno);
+
+    /**
+     * 根据学号查找学生
+     * @param sno
+     * @return
+     */
     public Student findBySno(String sno);
     /**
      * 根据用户名和密码查找学生

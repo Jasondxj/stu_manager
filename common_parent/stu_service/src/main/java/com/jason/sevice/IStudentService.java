@@ -1,12 +1,23 @@
 package com.jason.sevice;
 
-import com.jason.model.PageBean;
-import com.jason.model.Student;
-import com.jason.model.Teacher;
+import com.jason.model.*;
 
 import java.util.List;
 
 public interface IStudentService {
+    /**
+     * 查询学生选修的所有课程
+     * @param sno
+     * @return
+     */
+    public List<Course> findAllCourse(String sno);
+    /**
+     * 查询学生选修的指定课程
+     * @param sno
+     * @param cno
+     * @return
+     */
+    public Core findCoreBySno(String sno,String cno);
     /**
      * 查找所有学生
      *
@@ -65,10 +76,24 @@ public interface IStudentService {
 
     /**
      * 分页查询
+     *
      * @param currentPage
      * @param pageSize
      * @return
      */
     public PageBean<Student> pageQuery(int currentPage, int pageSize);
+
+    /**
+     * 查找所有课程
+     * @return
+     */
+    public List<Course> findAllCourse();
+
+    /**
+     * 添加选课
+     * @param sno
+     * @param cno
+     */
+    public void addCourse(String sno,String cno);
 
 }

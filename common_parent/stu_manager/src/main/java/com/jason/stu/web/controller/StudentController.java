@@ -1,9 +1,6 @@
 package com.jason.stu.web.controller;
 
-import com.jason.model.Department;
-import com.jason.model.PageBean;
-import com.jason.model.Student;
-import com.jason.model.Teacher;
+import com.jason.model.*;
 import com.jason.sevice.IStudentService;
 import com.jason.sevice.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +19,7 @@ public class StudentController {
 
     /**
      * 访问管理页面
+     *
      * @return
      */
     @RequestMapping("manage")
@@ -31,6 +29,7 @@ public class StudentController {
 
     /**
      * 查找所有学生
+     *
      * @param model
      * @return
      */
@@ -43,6 +42,7 @@ public class StudentController {
 
     /**
      * 访问编辑页面
+     *
      * @return
      */
     @RequestMapping("edit")
@@ -52,6 +52,7 @@ public class StudentController {
 
     /**
      * 新增学生
+     *
      * @param student
      * @return
      */
@@ -63,47 +64,61 @@ public class StudentController {
 
     /**
      * 删除学生
+     *
      * @param sno
      * @return
      */
     @RequestMapping("delete")
-    public String delete(String sno,HttpSession session) {
+    public String delete(String sno, HttpSession session) {
         PageBean<Student> pb = (PageBean<Student>) session.getAttribute("pb");
         int currentPage = pb.getCurrentPage();
         studentService.deleteBySno(sno);
-        return "forward:pageQuery.do?currentPage="+currentPage;
+        return "forward:pageQuery.do?currentPage=" + currentPage;
     }
 
     /**
      * 根据条件查询学生
+     *
      * @param
      * @return
      */
     @RequestMapping("search")
-    public String search(String name,String sex,String dromno,Integer age,Model model) {
-        List<Student> students = studentService.findByCondition(name, sex, dromno,age);
-        model.addAttribute("students",students);
+    public String search(String name, String sex, String dromno, Integer age, Model model) {
+        List<Student> students = studentService.findByCondition(name, sex, dromno, age);
+        model.addAttribute("students", students);
         return "student/info";
     }
+
     @RequestMapping("Myinfo")
-    public String MyInfo(String sno,Model model){
+    public String MyInfo(String sno, Model model) {
         Student student = studentService.findBySno(sno);
-        model.addAttribute("student",student);
+        model.addAttribute("student", student);
         return "student/Myinfo";
     }
+
     @RequestMapping("toUpdate")
-    public String toUpdate(String sno,Model model){
+    public String toUpdate(String sno, Model model) {
         System.out.println(sno);
         Student student = studentService.findBySno(sno);
         System.out.println(student);
-        model.addAttribute("student",student);
+        model.addAttribute("student", student);
         return "student/update";
     }
+
     @RequestMapping("update")
-    public String update(Student student,Model model){
+    public String update(Student student, Model model) {
         studentService.updateBySno(student);
         return "forward:Myinfo.do";
     }
+
+    /**
+     * 分页查询
+     *
+     * @param model
+     * @param session
+     * @param currentPage
+     * @return
+     */
     @RequestMapping("pageQuery")
     public String PageQuery(Model model, HttpSession session, Integer currentPage) {
         session.setAttribute("currentPage", currentPage);
@@ -112,5 +127,37 @@ public class StudentController {
         model.addAttribute("students", pb.getList());
         session.setAttribute("pb", pb);
         return "student/info";
+    }
+
+    @RequestMapping("courseInfo")
+    public String courseInfo(Model model, HttpSession session) {
+//        int currentPage=1;
+//        int pageSize=3;
+        List<Course> courses = studentService.findAllCourse();
+        model.addAttribute("courses", courses);
+        return "student/courseInfo";
+    }
+
+    @RequestMapping("addCourse")
+    public String addCourse(String sno, String cno, HttpSession session) {
+        session.removeAttribute("msg");
+        Core core = studentService.findCoreBySno(sno, cno);
+        session.setAttribute("msg", "该课程已选");
+        if (core == null) {
+            studentService.addCourse(sno, cno);
+            session.setAttribute("msg", "选课成功");
+        }
+        return "forward:courseInfo.do";
+    }
+
+    @RequestMapping("myCourse")
+    public String myCourse(String sno, Model model) {
+        List<Course> allCourse = studentService.findAllCourse(sno);
+        model.addAttribute("mycourses", allCourse);
+        return "student/myCourse";
+    }
+    @RequestMapping("coreInfo")
+    public String myCore(String sno){
+        return "student/coreInfo";
     }
 }

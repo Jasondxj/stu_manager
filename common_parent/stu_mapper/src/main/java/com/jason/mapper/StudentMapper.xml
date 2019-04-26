@@ -441,4 +441,17 @@
         SELECT * FROM student
         limit #{start},#{pageSize}
     </select>
+    <select id="findAllCourse" parameterType="string" resultType="course">
+        SELECT
+           c1.cno,
+           c1.name
+        FROM
+          course c1,
+          core c2
+        WHERE
+           c1.cno=c2.cno
+        AND
+           c2.sno=#{sno}
+
+    </select>
 </mapper>

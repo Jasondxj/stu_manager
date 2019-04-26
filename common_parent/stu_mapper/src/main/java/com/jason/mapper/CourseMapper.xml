@@ -253,4 +253,7 @@
       major_id = #{majorId,jdbcType=INTEGER}
     where cno = #{cno,jdbcType=VARCHAR}
   </update>
+    <select id="findAll" resultType="course">
+        SELECT * FROM course
+    </select>
 </mapper>
