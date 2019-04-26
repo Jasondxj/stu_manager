@@ -256,4 +256,26 @@
     <select id="findAll" resultType="course">
         SELECT * FROM course
     </select>
+    <resultMap id="CourseMap" type="course">
+        <id column="cno" property="cno"/>
+        <result column="name" property="name"/>
+        <collection property="students" ofType="student">
+            <id column="sno" property="sno"/>
+            <result column="sname" property="name"/>
+        </collection>
+    </resultMap>
+    <!--查询选修某课程的所有学生-->
+    <select id="findStuBySno" parameterType="string" resultMap="CourseMap">
+        select
+            c.*,
+            s.name sname,
+            s.sno
+        from
+           course c
+        join
+           core cs on c.cno=cs.cno
+        join
+           student s on cs.sno=s.sno
+        where c.cno=#{cno}
+    </select>
 </mapper>

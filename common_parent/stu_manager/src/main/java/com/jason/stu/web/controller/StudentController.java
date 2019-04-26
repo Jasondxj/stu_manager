@@ -152,12 +152,43 @@ public class StudentController {
 
     @RequestMapping("myCourse")
     public String myCourse(String sno, Model model) {
-        List<Course> allCourse = studentService.findAllCourse(sno);
-        model.addAttribute("mycourses", allCourse);
+        Student student = studentService.findAllCourse(sno);
+        model.addAttribute("mycourses", student.getCourses());
         return "student/myCourse";
     }
+
     @RequestMapping("coreInfo")
-    public String myCore(String sno){
+    public String myCore(String sno, Model model) {
+        List<Core> cores = studentService.findAllScoreBySno(sno);
+        model.addAttribute("cores", cores);
         return "student/coreInfo";
+    }
+
+    /**
+     * 查询选修某课程的所有学生
+     *
+     * @param cno
+     * @return
+     */
+    @RequestMapping("test1")
+    public String test1(String cno) {
+        Course course = studentService.findStuByCno(cno);
+        for (Student student : course.getStudents()) {
+            System.out.println(student.getName());
+        }
+        return "";
+    }
+
+    /**
+     * 查询某学生某课程的成绩
+     *
+     * @param sno
+     * @return
+     */
+    @RequestMapping("test2")
+    public String test2(String sno, String cno) {
+        Core core = studentService.findScoreBySnoAndCno(sno, cno);
+        System.out.println(core.getStudent().getName() + "\t" + core.getCourse().getName() + "\t" + core.getScore());
+        return "";
     }
 }

@@ -24,9 +24,36 @@ public class StudentServiceImpl implements IStudentService {
     private CoreMapper coreMapper;
 
     @Override
-    public List<Course> findAllCourse(String sno) {
-        List<Course> allCourse = studentMapper.findAllCourse(sno);
-        return allCourse;
+    public List<Core> findAllScoreBySno(String sno) {
+        List<Core> cores = coreMapper.findAllScoreBySno(sno);
+        return cores;
+    }
+
+    @Override
+    public Core findScoreBySnoAndCno(String sno, String cno) {
+        Map<String,String> map=new HashMap<String, String>();
+        map.put("sno",sno);
+        map.put("cno",cno);
+        Core core = coreMapper.findScoreBySnoAndCno(map);
+        return core;
+    }
+
+    @Override
+    public Course findStuByCno(String cno) {
+        Course course = courseMapper.findStuBySno(cno);
+        return course;
+    }
+
+    @Override
+    public List<Student> queryScore(String sno) {
+        List<Student> students = studentMapper.findCore(sno);
+        return students;
+    }
+
+    @Override
+    public Student findAllCourse(String sno) {
+        Student student = studentMapper.findCourseBysno(sno);
+        return student;
     }
 
     @Override
@@ -131,4 +158,5 @@ public class StudentServiceImpl implements IStudentService {
         map.put("cno",cno);
         coreMapper.insertCore(map);
     }
+
 }

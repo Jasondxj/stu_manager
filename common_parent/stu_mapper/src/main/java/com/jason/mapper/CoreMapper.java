@@ -10,6 +10,18 @@ import java.util.Map;
 
 public interface CoreMapper {
     /**
+     * 查询学生所有课程的成绩
+     * @param sno
+     * @return
+     */
+    public List<Core> findAllScoreBySno(String sno);
+    /**
+     * 查询某学生某课程的成绩
+     * @param map
+     * @return
+     */
+    public Core findScoreBySnoAndCno(Map<String,String> map);
+    /**
      * 学生选课
      * @param map
      */

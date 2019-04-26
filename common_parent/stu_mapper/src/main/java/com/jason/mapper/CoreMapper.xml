@@ -271,4 +271,46 @@
     <insert id="insertCore" parameterType="hashmap">
         INSERT INTO core(sno,cno) VALUES (#{sno},#{cno})
     </insert>
+    <resultMap id="coreMap" type="core" >
+        <id column="sno" property="sno"/>
+        <id column="cno" property="cno"/>
+        <result column="score" property="score" />
+        <association property="student" javaType="student">
+            <id column="sno" property="sno"/>
+            <result column="sname" property="name" />
+        </association>
+        <association property="course" javaType="course">
+            <id column="cno" property="cno"/>
+            <result column="cname" property="name"/>
+        </association>
+    </resultMap>
+    <!--查询某学生某课程的成绩-->
+    <select id="findScoreBySnoAndCno" parameterType="hashmap" resultMap="coreMap">
+        SELECT
+          cs.score,
+          cs.cno,
+          cs.sno,
+          s.name sname,
+          c.name cname
+        FROM
+          course c
+        JOIN core cs ON c.cno=cs.cno
+        JOIN student s ON cs.sno=s.sno
+        WHERE
+          c.cno=#{cno} AND s.sno=#{sno}
+    </select>
+    <select id="findAllScoreBySno" parameterType="string" resultMap="coreMap">
+        SELECT
+          cs.score,
+          cs.cno,
+          cs.sno,
+          s.name sname,
+          c.name cname
+        FROM
+          course c
+        JOIN core cs ON c.cno=cs.cno
+        JOIN student s ON cs.sno=s.sno
+        WHERE
+          s.sno=#{sno}
+    </select>
 </mapper>

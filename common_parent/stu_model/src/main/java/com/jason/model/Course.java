@@ -1,8 +1,19 @@
 package com.jason.model;
 
+import java.util.List;
+
 public class Course {
     private String detail;
     private Major major;//一门课程属于一个专业
+    private List<Student> students;//一门课程被多名学生选修
+
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List<Student> students) {
+        this.students = students;
+    }
 
     public Major getMajor() {
         return major;

@@ -6,11 +6,36 @@ import java.util.List;
 
 public interface IStudentService {
     /**
+     * 查询某学生所有课程的成绩
+     * @param sno
+     * @return
+     */
+    public List<Core> findAllScoreBySno(String sno);
+    /**
+     * 查询某学生某课程的成绩
+     * @param sno
+     * @param cno
+     * @return
+     */
+    public Core findScoreBySnoAndCno(String sno,String cno);
+    /**
+     * 查询选修某课程的所有学生（一个Course对象里面有Student数组）
+     * @param cno
+     * @return
+     */
+    public Course findStuByCno(String cno);
+    /**
+     * 查询学生成绩
+     * @param sno
+     * @return
+     */
+    public List<Student> queryScore(String sno);
+    /**
      * 查询学生选修的所有课程
      * @param sno
      * @return
      */
-    public List<Course> findAllCourse(String sno);
+    public Student findAllCourse(String sno);
     /**
      * 查询学生选修的指定课程
      * @param sno

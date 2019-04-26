@@ -1,10 +1,20 @@
 package com.jason.model;
 
 import java.util.Date;
+import java.util.List;
 
 public class Student {
+    private List<Course> courses;//一个学生选修多门课程
     private String username;
     private String password;
+
+    public List<Course> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(List<Course> courses) {
+        this.courses = courses;
+    }
 
     public String getUsername() {
         return username;

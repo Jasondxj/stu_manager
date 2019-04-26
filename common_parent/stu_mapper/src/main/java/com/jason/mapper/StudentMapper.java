@@ -7,6 +7,13 @@ import java.util.List;
 import java.util.Map;
 
 public interface StudentMapper {
+    public Student findCourseBysno(String sno);
+    /**
+     * 查询成绩
+     * @param sno
+     * @return
+     */
+    public List<Student> findCore(String sno);
     /**
      * 查询学生选修的所有课程
      * @param sno

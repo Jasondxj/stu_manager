@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 public interface CourseMapper {
+    public Course findStuBySno(String cno);
     /**
      * 查找所有课程
      * @return
