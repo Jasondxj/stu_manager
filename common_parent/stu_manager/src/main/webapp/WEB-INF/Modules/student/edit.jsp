@@ -10,6 +10,9 @@
 		$("#userForm").attr("action","${pageContext.request.contextPath}/student/add.do");
 		$("#userForm").submit();
 	}
+    function infoClose() {
+        location.href="${pageContext.request.contextPath}/student/pageQuery.do?currentPage=${pb.currentPage}";
+    }
 	</script>
 </head>
 <body>
@@ -20,7 +23,7 @@
 					<h4 class="specificPage_title l">
 						<span id="MainContent_lbTitle">编辑</span>
 					</h4>
-					<span class="closePage r" onclick="Common.closePage();">关闭</span>
+					<span class="closePage r" onclick="infoClose();">关闭</span>
 				</div>
 				<div id="MainContent_divTitleTab" class="activeEdite_tab_list"
 					style="margin-bottom: 3px;">
@@ -93,7 +96,7 @@
 				 <div class="form_btn form_btn_static">
                     <ul>
                         <li><input type="button" value="保存" onclick="userSave();"/></li>
-                        <li><input type="button" value="关闭" onclick="Common.closePage();" /></li>
+                        <li><input type="button" value="关闭" onclick="infoClose();" /></li>
                     </ul>
                 </div>
 			</div>

@@ -172,9 +172,9 @@ public class UserController extends BaseController<User> {
     }
 
     @RequestMapping("toUpdate")
-    public String toUpdate(Integer id,Model model) {
+    public String toUpdate(Integer id, Model model) {
         User user = userService.findById(id);
-        model.addAttribute("user",user);
+        model.addAttribute("user", user);
         return "user/update";
     }
 

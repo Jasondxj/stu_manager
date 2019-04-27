@@ -2,6 +2,7 @@ package com.jason.stu.web.controller;
 
 import com.jason.model.*;
 import com.jason.sevice.IStudentService;
+import com.jason.sevice.ITeacherService;
 import com.jason.sevice.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,8 @@ import java.util.List;
 public class StudentController {
     @Autowired
     private IStudentService studentService;
+    @Autowired
+    private ITeacherService teacherService;
 
     /**
      * 访问管理页面
@@ -130,9 +133,7 @@ public class StudentController {
     }
 
     @RequestMapping("courseInfo")
-    public String courseInfo(Model model, HttpSession session) {
-//        int currentPage=1;
-//        int pageSize=3;
+    public String courseInfo(Model model) {
         List<Course> courses = studentService.findAllCourse();
         model.addAttribute("courses", courses);
         return "student/courseInfo";
@@ -191,4 +192,11 @@ public class StudentController {
         System.out.println(core.getStudent().getName() + "\t" + core.getCourse().getName() + "\t" + core.getScore());
         return "";
     }
+    @RequestMapping("courseSearch")
+    public String courseSearch(Course course,Model model){
+        List<Course> courses = teacherService.findCourseByContidion(course);
+        model.addAttribute("courses",courses);
+        return "student/courseInfo";
+    }
+
 }
