@@ -142,10 +142,10 @@ public class StudentController {
     public String addCourse(String sno, String cno, HttpSession session) {
         session.removeAttribute("msg");
         Core core = studentService.findCoreBySno(sno, cno);
-        session.setAttribute("msg", "该课程已选");
         if (core == null) {
             studentService.addCourse(sno, cno);
             session.setAttribute("msg", "选课成功");
+            session.setMaxInactiveInterval(10);
         }
         return "forward:courseInfo.do";
     }
