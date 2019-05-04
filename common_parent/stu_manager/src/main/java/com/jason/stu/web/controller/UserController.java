@@ -1,5 +1,6 @@
 package com.jason.stu.web.controller;
 
+import com.jason.model.Teacher;
 import com.jason.model.User;
 import com.jason.sevice.IStudentService;
 import com.jason.sevice.ITeacherService;
@@ -192,5 +193,16 @@ public class UserController extends BaseController<User> {
     public String update(User user) {
         userService.updateById(user);
         return "forward:info.do";
+    }
+    @RequestMapping("toTeaUpdate")
+    public String toUpdate(String id, Model model) {
+        Teacher teacher = teacherService.findById(id);
+        model.addAttribute("teacher", teacher);
+        return "user/teacherUpdate";
+    }
+    @RequestMapping("teacherUpdate")
+    public String update(Teacher teacher,HttpSession session) {
+        teacherService.updateById(teacher);
+        return "forward:/teacher/pageQuery.do?currentPage=1";
     }
 }

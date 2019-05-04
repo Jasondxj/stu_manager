@@ -10,23 +10,18 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/assets/Scripts/common.js"></script>
     <script type="text/javascript">
         function search() {
-            $("#searchUserForm1").attr("action", "${pageContext.request.contextPath}/student/courseSearch.do");
-            $("#searchUserForm1").submit();
+            $("#searchCourseForm1").attr("action", "${pageContext.request.contextPath}/teacher/searchStuCourse.do");
+            $("#searchCourseForm1").submit();
         }
 
-        $(function () {
-            if ("${msg}"=="选课成功") {
-                alert("${msg}")
-            }
-        });
 
     </script>
 </head>
 <body>
-<form id="searchUserForm1" action="" method="post">
+<form id="searchCourseForm1" action="" method="post">
     <div class="condition_search">
         <div class="search_title">
-            <h3 class="total_title">条件查询</h3>
+            <h3 class="total_title">按学号查询</h3>
             <span class="clickToReflesh" onclick="window.location.href = window.location.href;">点击刷新</span>
             <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="MainContent_labAllTotal"></span></div>
         </div>
@@ -35,15 +30,9 @@
             <div class="search_table">
                 <table cellpadding="0" cellspacing="0" style="width: 900px">
                     <tr>
-                        <td class="input_text tar">课程编号：</td>
+                        <td class="input_text tar">学号：</td>
                         <td>
-                            <p><input type="text" id="username" name="cno" style="width: 120px;"></p>
-                        </td>
-                        <td class="input_text tar">课程名称：</td>
-                        <td>
-                            <p>
-                                <input type="text" id="" name="name" style="width: 120px;">
-                            </p>
+                            <p><input type="text" id="username" name="sno" style="width: 120px;"></p>
                         </td>
                     </tr>
                 </table>
@@ -52,42 +41,27 @@
         </div>
         <div class="edit">
             <h3 class="total_title">查询结果</h3>
-            <ul>
-                <li>
-                </li>
-            </ul>
         </div>
     </div>
-
     <!--这里是表格数据-->
-    <div class="total_table rel">
+    <div class="total_table rel" style="margin-top: 20px">
         <table border="0" cellspacing="0" cellpadding="0"
                style="width: 100%;">
             <thead>
             <tr>
-                <td style="width: 20px; text-align: center;"><p>课程编号</p></td>
-                <td style="width: 30px; text-align: center"><p>课程名称</p></td>
-                <td style="width: 200px"><p>课程简介</p></td>
-                <td class="total_table_contral" style="width: 30px"><p>操作</p></td>
+                <td style="width: 15px;"><p>课程编号</p></td>
+                <td style="width: 50px"><p>课程名称</p></td>
             </tr>
             </thead>
         </table>
         <div style="height: 200px; overflow-y: auto; overflow-x: hidden;">
-            <table cellpadding="0" cellspacing="0"
+            <table cellpadding="0" cellspacing="0" border="1"
                    style="width: 100%; background-color: #FFF;">
                 <tbody>
-                <c:forEach items="${courses}" var="course">
+                <c:forEach items="${mycourses}" var="course">
                     <tr onclick="Common.switchLine(this,event);">
-                        <td style="width: 30px; text-align: center;"><p><span>${course.cno}</span></p></td>
-                        <td style="width: 70px; text-align: center;"><p><span>${course.name}</span></p></td>
-                        <td style="width: 200px; text-align: center;"><p><span>
-                            <textarea cols="70" rows="3">${course.detail}</textarea>
-                        </span></p></td>
-                        <td class="delete" style="width: 30px; text-align: center;">
-                            <p>
-                                <a href="${pageContext.request.contextPath}/student/addCourse.do?sno=${student.sno}&cno=${course.cno}">选修</a>
-                            </p>
-                        </td>
+                        <td style="width: 15px; text-align: center;"><p><span>${course.cno}</span></p></td>
+                        <td style="width: 50px; text-align: center;"><p><span>${course.name}</span></p></td>
                     </tr>
                 </c:forEach>
                 </tbody>

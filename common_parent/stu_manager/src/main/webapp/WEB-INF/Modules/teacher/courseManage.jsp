@@ -16,7 +16,7 @@
                         <li class="nav_current">
                             <a href="#" class="subNavigation" id="A001011"
                                data-name="common_iframe" onclick="Common.switchNavigation(this);"
-                               data-url="${pageContext.request.contextPath}/student/pageQuery.do?currentPage=1">学生选课情况</a>
+                               data-url="${pageContext.request.contextPath}/teacher/toStuCourse.do">学生选课情况</a>
                         </li>
                         <li class="nav_current">
                             <a href="#" class="subNavigation" id="A0011"

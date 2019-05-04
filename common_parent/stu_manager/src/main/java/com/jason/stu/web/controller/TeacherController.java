@@ -8,6 +8,7 @@ import com.jason.sevice.IStudentService;
 import com.jason.sevice.ITeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -138,5 +139,16 @@ public class TeacherController {
         List<Course> courses = teacherService.findCourseByContidion(course);
         model.addAttribute("courses",courses);
         return "teacher/allCourse";
+    }
+    @RequestMapping("toStuCourse")
+    public String toStuCourse(){
+        return "teacher/stuCourse";
+    }
+    @RequestMapping("searchStuCourse")
+    public String myCourse(String sno, Model model) {
+        System.out.println(sno);
+        Student student = studentService.findAllCourse(sno);
+        model.addAttribute("mycourses", student.getCourses());
+        return "teacher/stuCourse";
     }
 }

@@ -7,11 +7,11 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/assets/Scripts/common.js"></script>
     <script type="text/javascript">
         function teacherUpdate() {
-            $("#userForm").attr("action","${pageContext.request.contextPath}/teacher/update.do");
+            $("#userForm").attr("action","${pageContext.request.contextPath}/user/teacherUpdate.do");
             $("#userForm").submit();
         }
         function updateClose() {
-            location.href="${pageContext.request.contextPath}/teacher/findById.do?id=${teacher.id}";
+            location.href="${pageContext.request.contextPath}/teacher/pageQuery.do?currentPage=${pb.currentPage}";
         }
     </script>
 </head>

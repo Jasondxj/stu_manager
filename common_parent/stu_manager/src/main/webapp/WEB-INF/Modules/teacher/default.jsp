@@ -60,11 +60,6 @@
                                onclick="Common.switchNavigation(this);"
                                data-url="${pageContext.request.contextPath}/teacher/courseManage.do">课程管理</a>
                         </li>
-                        <li class="navContent">
-                            <a href="#" class="showNav" id="a1" data-name="main_iframe"
-                               onclick="Common.switchNavigation(this);"
-                               data-url="${pageContext.request.contextPath}/employee/manage.do">查看课程安排</a>
-                        </li>
 					</ul>
 				</nav>
                 <%--<h1 style="float: left;margin-left: 50px">欢迎使用学生信息管理系统!</h1>--%>

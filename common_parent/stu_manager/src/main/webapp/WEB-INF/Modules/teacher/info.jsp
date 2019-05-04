@@ -81,7 +81,7 @@
                         <td style="width: 80px; text-align: center;"><p><span>${teacher.username}</span></p></td>
                         <td class="delete" style="width: 210px; text-align: center;">
                             <p>
-                                <a href="${pageContext.request.contextPath}/teacher/toUpdate.do?id=${teacher.id}">编辑</a>
+                                <a href="${pageContext.request.contextPath}/user/toTeaUpdate.do?id=${teacher.id}">编辑</a>
                                 <a href="${pageContext.request.contextPath}/teacher/delete.do?id=${teacher.id}">删除</a>
                         </td>
                     </tr>
