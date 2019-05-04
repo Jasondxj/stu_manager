@@ -54,7 +54,7 @@
     </script>
 </head>
 
-<body style="background: url(../../assets/Images/23.jpg)">
+<body style="background: url(${pageContext.request.contextPath}/assets/Images/23.jpg)">
 
 <!-- 头部 end -->
 <section id="login_wrap">
@@ -81,6 +81,12 @@
                        style="width: 20px;height:15px;vertical-align: text-top;margin-top: 2px;margin-left: 20px">老师
                 <input type="radio" value="学生" name="role"
                        style="width: 20px;height:15px;vertical-align: text-top;margin-top: 2px;margin-left: 20px">学生
+                <div class="verify">
+                    <input name="check" type="text" placeholder="请输入验证码" autocomplete="off">
+                    <span><img src="${pageContext.request.contextPath}/validatecode.jsp"
+                               onclick="javascript:document.getElementById('code').src='${pageContext.request.contextPath }/validatecode.jsp?'+Math.random();" id="code"
+                    ></span>
+                </div>
                 <div class="submit_btn">
                     <input type="submit" value="登录" style="margin-top: 20px;height: 40px">
                 </div>

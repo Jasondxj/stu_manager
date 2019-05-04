@@ -132,10 +132,10 @@
 	<!--引入头部-->
 	<div id="header"></div>
         <!-- 头部 end -->
-    	<div class="rg_layout">
-    		<div class="rg_form clearfix">
-    			<div class="rg_form_left">
-    				<p>新用户注册</p>
+    	<div class="rg_layout" style="height: 718.5px">
+    		<div class="rg_form clearfix" style="margin:100px auto;">
+    			<div class="rg_form_left" >
+    				<p style="color: #76d8c2">新用户注册</p>
     				<p>USER REGISTER</p>
     			</div>
     			<div class="rg_form_center">
@@ -213,7 +213,7 @@
     							<td class="td_left"> 
     							</td>
     							<td class="td_right check"> 
-    								<input type="submit" class="submit" value="注册">
+    								<input type="submit" class="submit" value="注册" style="background-color: #76d8c2">
 									<span id="msg" style="color: red;"></span>
     							</td>
     						</tr>

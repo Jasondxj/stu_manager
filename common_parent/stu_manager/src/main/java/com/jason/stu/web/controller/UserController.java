@@ -4,6 +4,7 @@ import com.jason.model.User;
 import com.jason.sevice.IStudentService;
 import com.jason.sevice.ITeacherService;
 import com.jason.sevice.IUserService;
+import com.jason.stu.utils.MD5Utils;
 import com.jason.stu.web.controller.base.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,33 +38,42 @@ public class UserController extends BaseController<User> {
     public String login(User user, HttpServletRequest request, String role) {
         Object loginUser = null;
         HttpSession session = request.getSession();
-        if ("管理员".equals(role)) {
-            loginUser = userService.login(user.getUsername(), user.getPassword());
-            if (loginUser != null) {
-                session.setAttribute("user", loginUser);
-                return "user/Default";
+        String serverCode = (String) session.getAttribute("key");
+        String clientCode = request.getParameter("check");
+        String MD5Pwd= MD5Utils.text2md5(user.getPassword());
+        if (serverCode.equalsIgnoreCase(clientCode)) {
+            if ("管理员".equals(role)) {
+                loginUser = userService.login(user.getUsername(), MD5Pwd);
+                if (loginUser != null) {
+                    session.setAttribute("user", loginUser);
+                    return "user/Default";
+                }
+                session.setAttribute("msg", "用户名或密码错误");
+                return "login";
             }
-            session.setAttribute("msg", "用户名或密码错误");
+            if ("学生".equals(role)) {
+                loginUser = studentService.login(user.getUsername(), MD5Pwd);
+                if (loginUser != null) {
+                    session.setAttribute("student", loginUser);
+                    return "student/default";
+                }
+                session.setAttribute("msg", "用户名或密码错误");
+                return "login";
+            }
+            if ("老师".equals(role)) {
+                loginUser = teacherService.login(user.getUsername(), MD5Pwd);
+                if (loginUser != null) {
+                    session.setAttribute("teacher", loginUser);
+                    return "teacher/default";
+                }
+                session.setAttribute("msg", "用户名或密码错误");
+                return "login";
+            }
+        }else {
+            session.setAttribute("msg", "验证码错误");
             return "login";
         }
-        if ("学生".equals(role)) {
-            loginUser = studentService.login(user.getUsername(), user.getPassword());
-            if (loginUser != null) {
-                session.setAttribute("student", loginUser);
-                return "student/default";
-            }
-            session.setAttribute("msg", "用户名或密码错误");
-            return "login";
-        }
-        if ("老师".equals(role)) {
-            loginUser = teacherService.login(user.getUsername(), user.getPassword());
-            if (loginUser != null) {
-                session.setAttribute("teacher", loginUser);
-                return "teacher/default";
-            }
-            session.setAttribute("msg", "用户名或密码错误");
-            return "login";
-        }
+
         return "login";
     }
 
