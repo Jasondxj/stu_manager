@@ -439,8 +439,15 @@
         WHERE
            s.sno=#{sno}
     </select>
-    <select id="findByPage" parameterType="hashmap" resultType="student">
-        SELECT * FROM student
+    <select id="findByPage" parameterType="hashmap" resultMap="stuMap">
+        SELECT
+           s.*,
+           d.name dname
+        FROM
+            student s LEFT JOIN
+            department d
+        ON
+           s.departmentId=d.id
         limit #{start},#{pageSize}
     </select>
     <select id="findAllCourse" parameterType="string" resultType="course">
